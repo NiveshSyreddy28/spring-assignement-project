@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <style>.error{ color:red}</style>
+    <meta charset="utf-8">
+    <title>Add Item Form</title>
+    <h3>Save Item</h3>
+    <br>
+    <a th:href="@{/restaurant/updateMenu}">Back to Menu</a>
+    <br>
+</head>
+<body>
+
+<br>
+<div>
+<form action="#" th:action="@{/restaurant/saveItem}"
+      th:object="${item}" method="POST">
+
+    <!--Add hidden form field to handle update -->
+    <input type="hidden" th:field="*{id}"/>
+
+    <input type="text" th:field="*{itemName}" placeholder="Item Name"
+        class="form-control mb-4 col-4"/>
+    <p class="error" th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}"></p>
+
+    <input type="text" th:field="*{itemPrice}" placeholder="Item Price"
+           class="form-control mb-4 col-4"/>
+    <p class="error" th:if="${#fields.hasErrors('itemPrice')}" th:errors="*{itemPrice}"></p>
+
+    <p>Select Item Availability</p>
+    <select th:field="*{availability}" class="form-control mb-4 col-4" >
+<!--        <option value="Yes">Select Availability</option>-->
+        <option th:each="availabilityOption : ${availabilityOptions}" th:value="${availabilityOption}" th:text="${availabilityOption}"></option>
+    </select>
+    <p class="error" th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></p>
+
+    <p>Select Item Type</p>
+    <select th:field="*{itemType}" class="form-control mb-4 col-4" >
+<!--        <option value="Veg">Select Item Type</option>-->
+        <option th:each="typeOption : ${typeOptions}" th:value="${typeOption}" th:text="${typeOption}"></option>
+    </select>
+    <p class="error" th:if="${#fields.hasErrors('itemType')}" th:errors="*{itemType}"></p>
+
+    <input type="text" th:field="*{timeRequiredToPrepare}" placeholder="Time required to prepare"
+           class="form-control mb-4 col-4"/>
+    <p class="error" th:if="${#fields.hasErrors('timeRequiredToPrepare')}" th:errors="*{timeRequiredToPrepare}"></p>
+
+    <button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+    <hr>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <style>.error{ color:red}</style>
+    <meta charset="utf-8">
+    <title>Add User Form</title>
+    <h3>Save User</h3>
+</head>
+<body>
+
+<br>
+<a th:href="@{/restaurant/loginHome}" class="bth btn-primary btn-sm mb-3">Back to Home Page</a>
+<br><br>
+<div>
+    <form action="#" th:action="@{/restaurant/saveUser}"
+          th:object="${user}" method="POST">
+
+        <!--Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}"/>
+
+        <input type="text" th:field="*{userName}" placeholder="Username"
+               class="form-control mb-4 col-4"/>
+        <p class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+
+        <input type="password" th:field="*{password}" placeholder="password"
+               class="form-control mb-4 col-4"/>
+        <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+        <input type="hidden" th:field="*{enabled}" th:value=1 placeholder="enabled"
+               class="form-control mb-4 col-4"/>
+
+        <p>Select authority for user</p>
+        <select th:field="*{authority}" class="form-control mb-4 col-4" >
+<!--            <option value="MANAGER">Select Authority</option>-->
+            <option th:each="userAuthority : ${userAuthorities}" th:value="${userAuthority}" th:text="${userAuthority}"></option>
+        </select>
+        <p class="error" th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}"></p>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>

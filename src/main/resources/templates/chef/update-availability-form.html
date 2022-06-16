@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="utf-8">
+    <title>Update Item Availability Form</title>
+    <h3>Update Item Availability</h3>
+</head>
+<body>
+
+<br>
+<div>
+<form action="#" th:action="@{/restaurant/saveItem}"
+      th:object="${item}" method="POST">
+
+    <!--Add hidden form field to handle update -->
+    <input type="hidden" th:field="*{id}"/>
+
+    <input type="hidden" th:field="*{itemName}" placeholder="Item Name"
+        class="form-control mb-4 col-4"/>
+    <p>Item Name:</p>
+    <td th:text="${item.itemName}"/>
+
+    <input type="hidden" th:field="*{itemPrice}" placeholder="Item Price"
+           class="form-control mb-4 col-4"/>
+
+    <select th:field="*{availability}" class="form-control mb-4 col-4" >
+        <option value="Yes">Select Availability</option>
+        <option th:each="availabilityOption : ${availabilityOptions}" th:value="${availabilityOption}" th:text="${availabilityOption}"></option>
+    </select>
+    <div class="alert alert-warning" th:if="${#fields.hasErrors('availability')}" th:errors="*{availability}"></div>
+
+    <input type="hidden" th:field="*{itemType}" th:value="${item.itemType}"/>
+
+    <input type="text" th:field="*{timeRequiredToPrepare}" th:value="${item.itemType}"/>
+    <div class="alert alert-warning" th:if="${#fields.hasErrors('timeRequiredToPrepare')}" th:errors="*{timeRequiredToPrepare}"></div>
+    <br><br>
+
+    <button type="submit" class="btn btn-info col-2">Save</button>
+</form>
+    <hr>
+        <a th:href="@{/restaurant/chefMenu}">Back to Menu</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+
+
+.heading {
+    opacity: 80%;
+    position: relative;
+    height: 50px;
+    background-color: #FFD700;
+}
+
+.heading h1 {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+form {
+    position: relative;
+    width: 45%;
+    margin-left: 35%;
+    margin-top: 10%;
+}
+
+input {
+    width: 10%;
+}
+
+.nav {
+    width: 10%;
+    margin-left: 45%;
+    margin-top: 5%;
+}
+
+.nav button:hover {
+    opacity: 80%;
+}
+
+.nav button {
+    font-weight: bold;
+    margin-top: 10px;
+    width:100%;
+    height: 40px;
+    opacity: 70%;
+    border: none;
+    background-color: #CD853F;
+}
+
+.nav a:link { text-decoration: none; }
+
+.nav a:hover  { color: black; }
+
+.nav a {
+    color: black;
+}
+
+.menu-nav button:hover {
+    opacity: 80%;
+}
+
+.menu-nav button {
+ font-weight: bold;
+     margin-top: 10px;
+     width:15%;
+     height: 40px;
+     opacity: 50%;
+}
+
+.menu-nav a:link { text-decoration: none; }
+
+.menu-nav a:hover  { color: black; }
+
+.menu-nav a {
+    color: black;
+}
+
